@@ -10,6 +10,10 @@ namespace EmptyWebApi.Controllers
 {
     public class ProductsController : ApiController
     {
+        /*
+         * implement products controller with entity framework
+         * add relation one to many between Product and ProducType
+         */
         private readonly static List<Product> _products = new List<Product>();
 
         [HttpGet]
