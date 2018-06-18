@@ -7,9 +7,10 @@ using System.Web.Http;
 namespace EmptyWebApi.Controllers
 {
     [RoutePrefix("items")]
-    public class ItemsControler : ApiController
+    public class ItemsController : ApiController
     {
         [HttpGet]
+        [Route("")]
         public IHttpActionResult GetItems()
         {
             return Ok(new { id = 1, name = "asdasd" });
