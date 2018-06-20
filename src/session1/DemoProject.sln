@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo2", "Demo2\Demo2.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmptyWebApi", "EmptyWebApi\EmptyWebApi.csproj", "{E681B81A-6A00-4E4F-A7B7-89AC49EAF139}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiValidation", "WebApiValidation\WebApiValidation.csproj", "{D53ADA02-01B3-45BA-8F7F-1612CC599A24}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +57,18 @@ Global
 		{E681B81A-6A00-4E4F-A7B7-89AC49EAF139}.Release|x64.Build.0 = Release|Any CPU
 		{E681B81A-6A00-4E4F-A7B7-89AC49EAF139}.Release|x86.ActiveCfg = Release|Any CPU
 		{E681B81A-6A00-4E4F-A7B7-89AC49EAF139}.Release|x86.Build.0 = Release|Any CPU
+		{D53ADA02-01B3-45BA-8F7F-1612CC599A24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D53ADA02-01B3-45BA-8F7F-1612CC599A24}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D53ADA02-01B3-45BA-8F7F-1612CC599A24}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{D53ADA02-01B3-45BA-8F7F-1612CC599A24}.Debug|x64.Build.0 = Debug|Any CPU
+		{D53ADA02-01B3-45BA-8F7F-1612CC599A24}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{D53ADA02-01B3-45BA-8F7F-1612CC599A24}.Debug|x86.Build.0 = Debug|Any CPU
+		{D53ADA02-01B3-45BA-8F7F-1612CC599A24}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D53ADA02-01B3-45BA-8F7F-1612CC599A24}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D53ADA02-01B3-45BA-8F7F-1612CC599A24}.Release|x64.ActiveCfg = Release|Any CPU
+		{D53ADA02-01B3-45BA-8F7F-1612CC599A24}.Release|x64.Build.0 = Release|Any CPU
+		{D53ADA02-01B3-45BA-8F7F-1612CC599A24}.Release|x86.ActiveCfg = Release|Any CPU
+		{D53ADA02-01B3-45BA-8F7F-1612CC599A24}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
