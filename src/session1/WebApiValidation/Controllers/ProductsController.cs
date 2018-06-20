@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
+using WebApiValidation.Filters;
 using WebApiValidation.Models;
 using WebApiValidation.Models.Requests;
 
@@ -35,9 +36,10 @@ namespace WebApiValidation.Controllers
         {
             return Ok();
         }
-        
+
         [HttpPost]
         [Route("")]
+        [ValidateModel(shouldLogError: true, ErrorLogDestination = "file")]
         public IHttpActionResult Create(CreateProductRequest product)
         {
             if (product == null || !ModelState.IsValid)
@@ -45,7 +47,12 @@ namespace WebApiValidation.Controllers
                 return BadRequest(ModelState);
             }
             var newProduct = new Product();
-            newProduct.Id = _products.Max(p => p.Id) + 1;
+
+            if (_products.Any())
+                newProduct.Id = _products.Max(p => p.Id) + 1;
+            else
+                newProduct.Id = 1;
+
             newProduct.ManufacturerId =
                 product.ManufacturerId > 0 ? product.ManufacturerId : null;
             newProduct.Name = product.Name.Trim(' ');

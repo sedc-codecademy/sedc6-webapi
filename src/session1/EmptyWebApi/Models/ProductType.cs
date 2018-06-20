@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace EmptyWebApi.Models
 {
@@ -8,5 +10,7 @@ namespace EmptyWebApi.Models
         public int Id { get; set; }
         [StringLength(20, MinimumLength = 6, ErrorMessage = "Name should be at least 10 characters long, and maximum 20 characters long")]
         public string Name { get; set; }
+
+        public virtual ICollection<Product> Products { get; set; }
     }
 }

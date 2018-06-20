@@ -15,6 +15,7 @@ namespace EmptyWebApi.Controllers
          * implement entity framework DbContext
          * implement CRUD operation
          * CRUD => Create-Read-Update-Delete
+         * Implement ValidateApiKeyAttribute(action filter)
          */
         private readonly DatabaseContext _db;
 
