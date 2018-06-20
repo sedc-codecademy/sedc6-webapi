@@ -35,7 +35,7 @@ namespace WebApiValidation.Controllers
         {
             return Ok();
         }
-
+        
         [HttpPost]
         [Route("")]
         public IHttpActionResult Create(CreateProductRequest product)
@@ -44,7 +44,16 @@ namespace WebApiValidation.Controllers
             {
                 return BadRequest(ModelState);
             }
-            return Ok();
+            var newProduct = new Product();
+            newProduct.Id = _products.Max(p => p.Id) + 1;
+            newProduct.ManufacturerId =
+                product.ManufacturerId > 0 ? product.ManufacturerId : null;
+            newProduct.Name = product.Name.Trim(' ');
+            newProduct.Quantity = product.Quantity;
+
+            _products.Add(newProduct);
+
+            return Ok(newProduct);
         }
 
         [HttpPut]

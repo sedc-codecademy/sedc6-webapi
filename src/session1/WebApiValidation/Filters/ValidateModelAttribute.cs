@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace WebApiValidation.Models.Requests
+namespace WebApiValidation.Filters
 {
-    public class UpdateProductRequest
+    public class ValidateModelAttribute
     {
-
     }
 }
