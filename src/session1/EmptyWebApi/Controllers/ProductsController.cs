@@ -23,7 +23,6 @@ namespace EmptyWebApi.Controllers
         [Route("")]
         public IHttpActionResult GetAll()
         {
-            var data2 = _context.Products.ToList();
             var data = _context.Products
                 .Select(p=>new GetProductsVM
                 {
