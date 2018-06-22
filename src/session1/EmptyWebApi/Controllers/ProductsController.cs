@@ -1,4 +1,5 @@
 ﻿using EmptyWebApi.Models;
+using EmptyWebApi.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,75 +9,86 @@ using System.Web.Http;
 
 namespace EmptyWebApi.Controllers
 {
+    [RoutePrefix("products")]
     public class ProductsController : ApiController
     {
-        /*
-         * implement products controller with entity framework
-         * add relation one to many between Product and ProducType
-         */
-        private readonly static List<Product> _products = new List<Product>();
+        private readonly DatabaseContext _context;
 
-        [HttpGet]
-        [Route("products")]
-        public IHttpActionResult GetAll()
+        public ProductsController()
         {
-            return Ok(_products);
+            _context = new DatabaseContext();
         }
 
         [HttpGet]
-        [Route("products/{id:int}")]
+        [Route("")]
+        public IHttpActionResult GetAll()
+        {
+            var data2 = _context.Products.ToList();
+            var data = _context.Products
+                .Select(p=>new GetProductsVM
+                {
+                    Id = p.Id,
+                    Description = p.Description,
+                    Name = p.Name,
+                    Quantity = p.Quantity,
+                    ProductTypeId = p.ProductTypeId,
+                    ProductType = new GetProductsProductTypeVM
+                    {
+                        Id = p.ProductType.Id,
+                        Name = p.ProductType.Name
+                    }
+                })
+                .ToList();
+            return Ok(data);
+        }
+
+        [HttpGet]
+        [Route("{id:min(1)}")]
         public IHttpActionResult Get(int id)
         {
-            if (id == 0)
-                return BadRequest();
-
-            var product = _products.FirstOrDefault(x => x.Id == id);
+            var product = _context.Products.FirstOrDefault(x => x.Id == id);
             if (product == null)
                 return NotFound();
 
             return Ok(product);
         }
-
-        [HttpGet]
-        [Route("products/{id:alpha}")]
-        public IHttpActionResult Get(string id)
-        {
-            return Ok("string ALPHA method called");
-        }
-
-        //[HttpGet]
-        //[Route("products/{id:length(1,10)}")]
-        //public IHttpActionResult GetAlpha(string id)
-        //{
-        //    return Ok("string method called");
-        //}
-
+        
         [HttpPost]
-        [Route("products")]
+        [Route("")]
         public IHttpActionResult Create(Product product)
         {
-            product.Id = _products.Count + 1;
-            _products.Add(product);
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            _context.Products.Add(product);
+            _context.SaveChanges();
+
             return Ok(product);
         }
 
-        //[HttpPost]
-        //[Route("products")]
-        //public IHttpActionResult Update(Product product)
-        //{
-
-        //}
-
         [HttpPut]
-        [Route("products/{id:min(1)}")]
+        [Route("{id:min(1)}")]
         public IHttpActionResult Update(int id, Product product, bool returnItBack = false)
         {
             if (product == null)
                 return BadRequest();
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
 
-            var dbProduct = _products.FirstOrDefault(x => x.Id == id);
+            var dbProduct = _context.Products.FirstOrDefault(x => x.Id == id);
             if (dbProduct == null)
                 return NotFound();
+
+            dbProduct.Name = product.Name;
+            dbProduct.ProductTypeId = product.ProductTypeId;
+            dbProduct.Description = product.Description?.Trim(' ', '/', '\\') ?? "";
+            dbProduct.Quantity = product.Quantity;
+            _context.SaveChanges();
+
+            if (returnItBack)
+                return Ok(dbProduct);
+            return Ok();
+
             //dynamic human = null;
             //int zipcode = human?.country?.city?.zipcode ?? 0;
 
@@ -85,21 +97,39 @@ namespace EmptyWebApi.Controllers
             //if (human != null && human.country != null && human.country.city != null && human.country.city != null)
             //    return Ok()
 
-
             //if (human != null)
             //    if (human.country != null)
             //        if (human.country.city != null)
             //            if (human.country.city != null)
             //                return Ok()
-
-            dbProduct.Description = product.Description?.Trim(' ', '/', '\\') ?? "";
-            dbProduct.Quantity = product.Quantity;
+        }
 
 
-            if (returnItBack)
-                return Ok(dbProduct);
+        [HttpDelete]
+        [Route("{id:min(1)}")]
+        public IHttpActionResult Delete(int id)
+        {
+            var product = _context.Products.FirstOrDefault(x => x.Id == id);
+            if (product == null)
+                return NotFound();
+
+            _context.Products.Remove(product);
+            _context.SaveChanges();
             return Ok();
         }
 
+        //[HttpGet]
+        //[Route("products/{id:alpha}")]
+        //public IHttpActionResult Get(string id)
+        //{
+        //    return Ok("string ALPHA method called");
+        //}
+
+        //[HttpGet]
+        //[Route("products/{id:length(1,10)}")]
+        //public IHttpActionResult GetAlpha(string id)
+        //{
+        //    return Ok("string method called");
+        //}
     }
 }

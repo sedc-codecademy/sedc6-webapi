@@ -112,6 +112,7 @@
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\GetProductsVM.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

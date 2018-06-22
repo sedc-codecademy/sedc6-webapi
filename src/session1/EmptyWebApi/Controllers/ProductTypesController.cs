@@ -17,18 +17,18 @@ namespace EmptyWebApi.Controllers
          * CRUD => Create-Read-Update-Delete
          * Implement ValidateApiKeyAttribute(action filter)
          */
-        private readonly DatabaseContext _db;
+        private readonly DatabaseContext _context;
 
         public ProductTypesController()
         {
-            _db = new DatabaseContext();
+            _context = new DatabaseContext();
         }
 
         [HttpGet]
         [Route("")]
         public IHttpActionResult GetAll()
         {
-            var productTypes = _db.ProductTypes.ToList();
+            var productTypes = _context.ProductTypes.ToList();
             return Ok(productTypes);
         }
 
@@ -36,7 +36,7 @@ namespace EmptyWebApi.Controllers
         [Route("{id:min(1)}")]
         public IHttpActionResult GetById(int id)
         {
-            var productTypes = _db.ProductTypes.FirstOrDefault(x=>x.Id == id);
+            var productTypes = _context.ProductTypes.FirstOrDefault(x=>x.Id == id);
             if (productTypes == null)
                 return NotFound();
 
@@ -47,8 +47,8 @@ namespace EmptyWebApi.Controllers
         [Route("")]
         public IHttpActionResult Create(ProductType productType)
         {
-            _db.ProductTypes.Add(productType);
-            _db.SaveChanges();
+            _context.ProductTypes.Add(productType);
+            _context.SaveChanges();
 
             return Ok(productType);
         }
@@ -60,12 +60,12 @@ namespace EmptyWebApi.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var dbProductType = _db.ProductTypes.FirstOrDefault(x=>x.Id == id);
+            var dbProductType = _context.ProductTypes.FirstOrDefault(x=>x.Id == id);
             if (dbProductType == null)
                 return NotFound();
 
             dbProductType.Name = productType.Name;
-            _db.SaveChanges();
+            _context.SaveChanges();
 
             return Ok(productType);
         }
@@ -73,12 +73,12 @@ namespace EmptyWebApi.Controllers
         [HttpDelete]
         public IHttpActionResult Delete(int id)
         {
-            var dbProductType = _db.ProductTypes.FirstOrDefault(x => x.Id == id);
+            var dbProductType = _context.ProductTypes.FirstOrDefault(x => x.Id == id);
             if (dbProductType == null)
                 return NotFound();
 
-            _db.ProductTypes.Remove(dbProductType);
-            _db.SaveChanges();
+            _context.ProductTypes.Remove(dbProductType);
+            _context.SaveChanges();
 
             return Ok();
         }
