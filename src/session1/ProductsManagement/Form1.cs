@@ -13,11 +13,11 @@ namespace ProductsManagement
 {
     public partial class Form1 : Form
     {
-        private readonly ProductsRepository _productsRepo;
+        private readonly PostsRepository _productsRepo;
 
         public Form1()
         {
-            _productsRepo = new ProductsRepository();
+            _productsRepo = new PostsRepository();
             InitializeComponent();
         }
         
@@ -30,6 +30,12 @@ namespace ProductsManagement
         private void seeAllToolStripMenuItem1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void createToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = new CreatePostForm();
+            form.Show();
         }
     }
 }
