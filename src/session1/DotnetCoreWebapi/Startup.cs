@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DotnetCoreWebapi.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -28,12 +29,18 @@ namespace DotnetCoreWebapi
         public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
+            
             services.AddMvc();
+            //services.AddScoped<IMovieRepository, MovieSecondRepository>();
+            //services.AddScoped<IMovieRepository, MovieSecondRepository>();
+            services.AddSingleton<IMovieRepository, MovieSecondRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
+
+            app.UseDeveloperExceptionPage();
             app.UseMvc();
         }
     }
