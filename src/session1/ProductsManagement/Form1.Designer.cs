@@ -7,19 +7,6 @@
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing && (components != null))
-            {
-                components.Dispose();
-            }
-            base.Dispose(disposing);
-        }
-
         #region Windows Form Designer generated code
 
         /// <summary>
@@ -36,6 +23,9 @@
             this.seeAllToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.createToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.MainGrid = new System.Windows.Forms.DataGridView();
+            this.productsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.allToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.createToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MainGrid)).BeginInit();
             this.SuspendLayout();
@@ -44,7 +34,8 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.productsToolStripMenuItem,
-            this.productTypesToolStripMenuItem});
+            this.productTypesToolStripMenuItem,
+            this.productsToolStripMenuItem1});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(800, 24);
@@ -86,14 +77,14 @@
             // seeAllToolStripMenuItem1
             // 
             this.seeAllToolStripMenuItem1.Name = "seeAllToolStripMenuItem1";
-            this.seeAllToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.seeAllToolStripMenuItem1.Size = new System.Drawing.Size(108, 22);
             this.seeAllToolStripMenuItem1.Text = "See all";
             this.seeAllToolStripMenuItem1.Click += new System.EventHandler(this.seeAllToolStripMenuItem1_Click);
             // 
             // createToolStripMenuItem1
             // 
             this.createToolStripMenuItem1.Name = "createToolStripMenuItem1";
-            this.createToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.createToolStripMenuItem1.Size = new System.Drawing.Size(108, 22);
             this.createToolStripMenuItem1.Text = "Create";
             // 
             // MainGrid
@@ -106,6 +97,29 @@
             this.MainGrid.ReadOnly = true;
             this.MainGrid.Size = new System.Drawing.Size(775, 410);
             this.MainGrid.TabIndex = 1;
+            // 
+            // productsToolStripMenuItem1
+            // 
+            this.productsToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.allToolStripMenuItem,
+            this.createToolStripMenuItem2});
+            this.productsToolStripMenuItem1.Name = "productsToolStripMenuItem1";
+            this.productsToolStripMenuItem1.Size = new System.Drawing.Size(66, 20);
+            this.productsToolStripMenuItem1.Text = "Products";
+            // 
+            // allToolStripMenuItem
+            // 
+            this.allToolStripMenuItem.Name = "allToolStripMenuItem";
+            this.allToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.allToolStripMenuItem.Text = "All";
+            this.allToolStripMenuItem.Click += new System.EventHandler(this.allToolStripMenuItem_Click);
+            // 
+            // createToolStripMenuItem2
+            // 
+            this.createToolStripMenuItem2.Name = "createToolStripMenuItem2";
+            this.createToolStripMenuItem2.Size = new System.Drawing.Size(180, 22);
+            this.createToolStripMenuItem2.Text = "Create";
+            this.createToolStripMenuItem2.Click += new System.EventHandler(this.createToolStripMenuItem2_Click);
             // 
             // Form1
             // 
@@ -134,6 +148,9 @@
         private System.Windows.Forms.ToolStripMenuItem seeAllToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem createToolStripMenuItem1;
         private System.Windows.Forms.DataGridView MainGrid;
+        private System.Windows.Forms.ToolStripMenuItem productsToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem allToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem createToolStripMenuItem2;
     }
 }
 

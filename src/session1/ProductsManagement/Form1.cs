@@ -15,6 +15,16 @@ namespace ProductsManagement
     {
         private readonly PostsRepository _productsRepo;
 
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            _productsRepo.Dispose();
+            base.Dispose(disposing);
+        }
+
         public Form1()
         {
             _productsRepo = new PostsRepository();
@@ -36,6 +46,17 @@ namespace ProductsManagement
         {
             var form = new CreatePostForm();
             form.Show();
+        }
+
+        private async void allToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var products = await _productsRepo.GetAllProductsAsync();
+            MainGrid.DataSource = products;
+        }
+
+        private void createToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
